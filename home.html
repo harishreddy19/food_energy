@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Energy Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: orange;
+            
+        }
+        h1{
+            font-size: 50px;
+            top: 10px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px -1px;
+            background-color: transparent;
+            z-index: 1000; 
+            position: absolute;
+        
+        }
+
+        header img {
+            max-height: 80px;
+            float: left;
+            margin-left: 20px;
+            margin-top: 20px;
+            border-radius: 200px;
+            
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+            background-color: transparent;
+            height: 0px;
+            overflow: visible;
+        }
+
+        li {
+            float: right;
+        }
+
+        li a {
+            display: block;
+            color: none;
+            text-align: center;
+            padding: 5px 4px;
+            text-decoration: none;
+            background-color: transparent;
+            line-height: 12px;
+        }
+
+        li a:hover {
+            background-color: orange;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: #333;
+            text-shadow: 5px 5px 15px orange;
+            font-family: cursive;
+            font-weight: bolder;
+        }
+        *{box-sizing: border-box;}
+
+        .slideshow-container {
+            max-width: 2000px;
+            max-height: 500px;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slide{
+        
+            padding:0;
+            text-align: center;
+            background-color: white;
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+            background-position: center;
+            font-size: 30px;
+        }
+
+        .mySlides {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .mySlides img{
+            width: 100%;
+            height: 100%;
+            
+        }
+        .bg{
+
+            background-size: 100% 100%;
+            background-position: center;
+            
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        /*.text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }*/
+
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+
+        .form-container {
+            position: relative;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 10px;
+            border-left-width: 30%;
+            border-right-width: 30%;
+            border-top: 30px;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('bg.jpg');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+           
+            margin: 0;
+        }
+        .submit-container {
+            text-align: center; 
+            position: fixed;
+            bottom: 100px;
+            left: 15px;
+            right: 0;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 80px;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: -60px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            padding-right: 10%;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            position: absolute;
+            bottom: 90px;
+            left: 50%;
+            transform:translateX(-50%);
+            height: 35px;
+            width: 90px;
+           
+        }
+
+        button[type="submit"]:hover {
+            background-color: orange ;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            background-color: transparent;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 0px;
+        }
+        .contact{
+            padding: 50px 12%;
+            font-size: 22px;
+            
+            
+            background-size: 100% 100%; 
+            color: white;
+        }
+        .result {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            left: 50%;
+            display: relative;
+            /* display: none; */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo1.jpg" alt="logo">
+        <ul>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="#product">Product</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home">Home</a></li>
+        </ul>
+    </header>
+    <h1>Food Energy</h1>
+    <br><br>
+    <div class="slideshow-container">
+        <!-- Slides -->
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 2</div>
+            <img src="bg2.jpeg" class="bg">
+            
+        </div>
+        
+        
+        <div class="mySlides fade">
+            <div class="text">2 / 2</div>
+            
+            <p class="slide">The project seeks to create a tool that accurately calculates energy intake from fats, carbohydrates, and proteins in food. It aims to aid individuals in tracking their calorie consumption for better dietary management.</p>
+        </div>
+        
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+    <!-- The dots/circles -->
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+    </div>
+
+    <h1>Food Energy Calculator</h1>
+
+    <!-- Your slideshow container and form container here -->
+
+    <div class="form-container">
+        <div class="form">
+            <form id="foodForm1" onsubmit="submitForm('foodForm1'); return false;">
+                <label for="item1">Items</label>
+                <input type="text" name="item" list="list-items" required><br><br>
+        
+                <label for="quantity1">Quantity (in Grams):</label>
+                <input type="number" name="quantity" required><br><br>
+        
+                <label for="date1">Date</label>
+                <input type="date" name="date" required><br><br>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <!-- Repeat the form structure for additional forms if needed -->
+    </div>
+
+    <div class="result"></div>
+    <div class="contact">
+        <div class="row">
+            <div class="text-col">
+                <h3>Address:</h3>
+                <p>II-D, CSE Block, MRCET, Maisammaguda,
+                    Kompally,Hyderabad,500014 </p>
+            </div>
+            <div class="dev">
+                <h4>Developed by:</h4>
+                <h6>Group No: D-06</h6>
+                <p>22N31A05R0</p>
+                <p>22N31A05N4</p>
+                <p>22N31A05N3</p>
+            </div>
+           
+            
+        </div>
+    </div>
+
+    <datalist id="list-items">
+        <option value="banana"></option>
+        <option value="milk"></option>
+        <option value="ice_cream"></option>
+        <option value="eggs"></option>
+        <option value="chicken"></option>
+        <option value="fish"></option>
+        <option value="butter"></option>
+        <option value="cheese"></option>
+        <option value="beans"></option>
+        <option value="cabbage"></option>
+        <option value="carrot"></option>
+        <option value="cauliflower"></option>
+        <option value="cucumber"></option>
+        <option value="peas"></option>
+        <option value="potatoes"></option>
+        <option value="tomatoes"></option>
+        <option value="apples"></option>
+        <option value="cherries"></option>
+        <option value="oranges"></option>
+        <option value="pea_nuts"></option>
+        <option value="beer"></option>
+        <option value="bread"></option>
+        <option value="rice"></option>
+    </datalist>
+    
+
+    <script>
+         var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+        // Function to calculate energy (calories)
+        function calculateEnergy(carbohydrates, protein, fat, quantity) {
+            return (carbohydrates * 4 + protein * 4 + fat * 9) * quantity;
+        }
+
+        // Function to handle form submission
+        function submitForm(formId) {
+            var form = document.getElementById(formId);
+            var item = form.querySelector('input[name="item"]').value;
+            var quantity = parseFloat(form.querySelector('input[name="quantity"]').value);
+            var carbohydrates, protein, fat;
+
+            // Fetch the macronutrient content of the selected food item
+            switch (item) {
+    case "banana":
+        carbohydrates = 1;
+        protein = 0;
+        fat = 20;
+        break;
+    case "milk":
+        carbohydrates = 3.3;
+        protein = 4;
+        fat = 5;
+        break;
+    case "ice_cream":
+        carbohydrates = 4;
+        protein = 7;
+        fat = 25;
+        break;
+    case "eggs":
+        carbohydrates = 12;
+        protein = 11;
+        fat = 0;
+        break;
+    case "chicken":
+        carbohydrates = 25;
+        protein = 5;
+        fat = 0;
+        break;
+    case "fish":
+        carbohydrates = 20;
+        protein = 10;
+        fat = 8;
+        break;
+    case "butter":
+        carbohydrates = 0;
+        protein = 82;
+        fat = 0;
+        break;
+    case "cheese":
+        carbohydrates = 22;
+        protein = 25;
+        fat = 0;
+        break;
+    case "beans":
+        carbohydrates = 2;
+        protein = 0;
+        fat = 3;
+        break;
+    case "cabbage":
+        carbohydrates = 1;
+        protein = 0;
+        fat = 1;
+        break;
+    case "carrot":
+        carbohydrates = 0.6;
+        protein = 0;
+        fat = 4;
+        break;
+    case "cauliflower":
+        carbohydrates = 1.5;
+        protein = 0;
+        fat = 1;
+        break;
+    case "cucumber":
+        carbohydrates = 0.6;
+        protein = 0;
+        fat = 2;
+        break;
+    case "peas":
+        carbohydrates = 5;
+        protein = 0;
+        fat = 8;
+        break;
+    case "potatoes":
+        carbohydrates = 1;
+        protein = 0;
+        fat = 22;
+        break;
+    case "tomatoes":
+        carbohydrates = 1;
+        protein = 0;
+        fat = 3;
+        break;
+    case "apples":
+        carbohydrates = 0.3;
+        protein = 0;
+        fat = 12;
+        break;
+    case "cherries":
+        carbohydrates = 0.6;
+        protein = 0;
+        fat = 12;
+        break;
+    case "oranges":
+        carbohydrates = 1;
+        protein = 0;
+        fat = 9;
+        break;
+    case "pea_nuts":
+        carbohydrates = 24;
+        protein = 49;
+        fat = 9;
+        break;
+    case "beer":
+        carbohydrates = 0.3;
+        protein = 0;
+        fat = 2;
+        break;
+    case "bread":
+        carbohydrates = 8;
+        protein = 2;
+        fat = 50;
+        break;
+    case "rice":
+        carbohydrates = 2;
+        protein = 0;
+        fat = 30;
+        break;
+    default:
+        alert("Invalid food item!");
+        return;}
+
+            var date = form.querySelector('input[name="date"]').value;
+            var energy = calculateEnergy(carbohydrates, protein, fat, quantity);
+            var resultDiv = document.querySelector('.result');
+            resultDiv.textContent = "The Energy in calories: " + energy;
+        }
+    </script>
+</body>
+</html>
